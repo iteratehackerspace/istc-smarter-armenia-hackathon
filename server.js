@@ -5,10 +5,10 @@ const app = express();
 const body_parser = require('body-parser');
 const WebSocketServer = require('ws').Server;
 const json_parser = body_parser.json();
+const path = require('path');
 const port = 8080;
 const global_data = [];
-const webSocketServer = new WebSocketServer({ server: app });
-
+const ws = new WebSocketServer({ server: app });
 const workoutPlaces = [{
   place: 'Opera',
   activeChallenges: ['run on the cascade', 'run 100m'],
@@ -19,23 +19,17 @@ const workoutPlaces = [{
     {username: 'Artem', challenge: 'run on the cascade', time: 300}
   ]
 }];
+
+app.use(express.static('public'));
+
 app.get('/', (req, res) => {
-  fs.readFile('public/index.html', (err, file_data) => {
-    res.end(file_data);
-  });
-  fs.readFile('public/bundle.js', (err, file_data) => {
-    res.end(file_data);
-  });
+  return res.set('Content-Type', 'text/html')
+    .sendFile(path.resolve(__dirname, 'public/index.html'));
 });
 app.get('/main_sports_statistics', (req, res) => {
   const sendMeOff = JSON.stringify({
     message_type: 'new_statistics',
     payload: workoutPlaces,
-  });
-  webSocketServer.on('open', (ws) => {
-    ws.clients.forEach((client) => {
-      client.send(sendMeOff);
-    });
   });
   console.log(workoutPlaces);
   res.end();
@@ -48,12 +42,12 @@ app.post('/add_record', json_parser, (req, res) => {
     payload: req.body.completedChallenge,
   });
   console.log(1);
-  webSocketServer.on('open', (ws) => {
+  // webSocketServer.on('open', (ws) => {
     ws.clients.forEach((client) => {
       client.send(sendMeOff);
       console.log('ws');
     });
-  });
+  // });
   console.log(workoutPlaces);
   res.end(JSON.stringify({result:"success"}));
 });
@@ -65,11 +59,11 @@ app.post('/new_user_challenge', json_parser, (req, res) => {
     payloadCh: req.body.newChallenge,
     payloadUser: req.body.username,
   });
-  webSocketServer.on('open', (ws) => {
+//webSocketServer.on('open', (ws) => {
     ws.clients.forEach((client) => {
       client.send(sendMeOff);
     });
-  });
+//  });
   console.log(workoutPlaces);
   res.end();
 });
