@@ -9,24 +9,66 @@ const port = 8080;
 const global_data = [];
 const webSocketServer = new WebSocketServer({ server: app });
 
+const workoutPlaces = [{
+  place: 'Opera',
+  activeChallenges: ['run on the cascade', 'run 100m'],
+  usersWhoActivatedCh: ['Edgar', 'Erik'],
+  usersWhoCompletCh: [
+    {username: 'Harut', challenge: 'run 100m', time: 10},
+    {username: 'Robert', challenge: 'run 100m', time: 9},
+    {username: 'Artem', challenge: 'run on the cascade', time: 300}
+  ]
+}];
 app.get('/', (req, res) => {
   fs.readFile('public/index.html', (err, file_data) => {
     res.end(file_data);
   });
 });
-app.post('/add_data', json_parser, (req, res) => {
-  global_data.push(req.body);
+app.get('/main_sports_statistics', (req, res) => {
   const sendMeOff = JSON.stringify({
-    message_type: 'new_data',
-    payload: req.body,
+    message_type: 'new_statistics',
+    payload: workoutPlaces,
   });
-  webSocketServer.clients.forEach((client) => {
-    client.send(sendMeOff);
-  })
+  webSocketServer.on('open', (ws) => {
+    ws.clients.forEach((client) => {
+      client.send(sendMeOff);
+    });
+  });
+  console.log(workoutPlaces);
+  res.end();
+});
+app.post('/add_record', json_parser, (req, res) => {
+  console.log(req.body);
+  workoutPlaces[req.body.placeNumber].usersWhoCompletCh.push(req.body.completedChallenge);
+  const sendMeOff = JSON.stringify({
+    message_type: 'added_record',
+    payload: req.body.completedChallenge,
+  });
+  console.log(1);
+  webSocketServer.on('open', (ws) => {
+    ws.clients.forEach((client) => {
+      client.send(sendMeOff);
+      console.log('ws');
+    });
+  });
+  console.log(workoutPlaces);
   res.end(JSON.stringify({result:"success"}));
 });
-app.get('/init_data_call', (req, res) => {
-  res.end(JSON.stringify(global_data));
-})
+app.post('/new_user_challenge', json_parser, (req, res) => {
+  workoutPlaces[req.body.placeNumber].activeChallenges.push(req.body.newChallenge);
+  workoutPlaces[req.body.placeNumber].usersWhoActivatedCh.push(req.body.username);
+  const sendMeOff = JSON.stringify({
+    message_type: 'added_challenge',
+    payloadCh: req.body.newChallenge,
+    payloadUser: req.body.username,
+  });
+  webSocketServer.on('open', (ws) => {
+    ws.clients.forEach((client) => {
+      client.send(sendMeOff);
+    });
+  });
+  console.log(workoutPlaces);
+  res.end();
+});
 app.use(express.static('.'));
 app.listen(port, () => console.log(`server on ${port}`));
