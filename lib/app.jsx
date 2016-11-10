@@ -16,7 +16,6 @@ class Application extends Component {
       let recordsHistory = await fetch(request);
       let all_records = await recordsHistory.json();
       this.setState({workoutPlaces: all_records.payload});
-      console.log(all_records);
     }, 1*1000);
 
   }
@@ -79,13 +78,27 @@ class Application extends Component {
       },
     }
     const bringPlaces = this.state.workoutPlaces.map((stats, idx) => {
-      const sample = {
+      const rowFlex = {
+        display: 'flex',
+        textAlign: 'center',
+        transition: '2s',
+        justifyContent: 'center',
+      };
+      const basicFlex = {
         display: 'flex',
         flexDirection: 'column',
+      };
+      const sample = {
         transition: '2s',
         backgroundPosition: 'center center',
-        backgroundsize: 'cover',
-      }
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat',
+      };
+      const center = {
+        textAlign: 'center',
+        justifyContent: 'center',
+        width: 'calc(100%/3)',
+      };
       const styleArray = [
         {
           flexItemColumnActive: {
@@ -121,8 +134,38 @@ class Application extends Component {
           },
         },
       ];
+      const getUsers = this.state.workoutPlaces[idx].usersWhoCompletCh.map((user, idx) => {
         return(
-            <div style={this.state.active[idx] ? {...sample, ...styleArray[idx].flexItemColumnActive} : {...sample, ...styleArray[idx].flexItemColumnPassive}} onClick={this.clickHandler} id={idx}>
+          <div style={rowFlex}>
+            <div style={center}>
+              {user.username}
+            </div>
+            <div style={center}>
+              {user.challenge}
+            </div>
+            <div style={center}>
+              {user.time}sec
+            </div>
+          </div>
+        );
+      });
+      const getChallenges = this.state.workoutPlaces[idx].activeChallenges.map((chal, idx) => {
+        return(
+          <div style={rowFlex}>
+            <div style={center}>
+              {chal.whoMade}
+            </div>
+            <div style={center}>
+              {chal.name}
+            </div>
+            <div style={center}>
+              {chal.description}
+            </div>
+          </div>
+        )
+      })
+        return(
+            <div style={this.state.active[idx] ? {...basicFlex, ...sample, ...styleArray[idx].flexItemColumnActive} : {...basicFlex, ...sample, ...styleArray[idx].flexItemColumnPassive}} onClick={this.clickHandler} id={idx}>
               <div style={style.flexItem}>
                 <div style={style.item}>
                   {stats.place}
@@ -136,10 +179,42 @@ class Application extends Component {
               </div>
               <div style={this.state.active[idx] ? style.innerItemActive : style.innerItemPassive}>
                 <div style={style.innerDivs}>
-                  High Scores
+                  <div style={basicFlex}>
+                    <div>
+                      High Scores
+                    </div>
+                    <div style={rowFlex}>
+                      <div style={center}>
+                        Username
+                      </div>
+                      <div style={center}>
+                        Challenge
+                      </div>
+                      <div style={center}>
+                        Time
+                      </div>
+                    </div>
+                    {getUsers}
+                  </div>
                 </div>
                 <div style={style.innerDivs}>
-                  Open Challenges
+                  <div style={basicFlex}>
+                    <div>
+                      Open Challenges
+                    </div>
+                    <div style={rowFlex}>
+                      <div style={center}>
+                        Username
+                      </div>
+                      <div style={center}>
+                        Challenge
+                      </div>
+                      <div style={center}>
+                        description
+                      </div>
+                    </div>
+                    {getChallenges}
+                  </div>
                 </div>
               </div>
             </div>

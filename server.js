@@ -7,8 +7,10 @@ const json_parser = body_parser.json();
 const port = 8080;
 const workoutPlaces = [{
   place: 'Opera',
-  activeChallenges: ['run on the cascade', 'run 100m'],
-  usersWhoActivatedCh: ['Edgar', 'Erik'],
+  activeChallenges: [
+    {whoMade: 'Edgar', description: 'run on the cascade as fast as you can', name: 'Who is the fastest man?'},
+    {whoMade: 'Erik', description: 'run 100m as fast as you can!', name: 'Is Usain Bolt slow??'}
+  ],
   usersWhoCompletCh: [
     {username: 'Harut', challenge: 'run 100m', time: 10},
     {username: 'Robert', challenge: 'run 100m', time: 9},
@@ -16,8 +18,10 @@ const workoutPlaces = [{
   },
   {
   place: 'Cascade',
-  activeChallenges: ['run on the cascade', 'run 100m'],
-  usersWhoActivatedCh: ['Edgar', 'Erik'],
+  activeChallenges: [
+    {whoMade: 'Edgar', description: 'run on the cascade as fast as you can', name: 'Who is the fastest man?'},
+    {whoMade: 'Erik', description: 'run 100m as fast as you can!', name: 'Is Usain Bolt slow??'}
+  ],
   usersWhoCompletCh: [
     {username: 'Harut', challenge: 'run 100m', time: 10},
     {username: 'Robert', challenge: 'run 100m', time: 9},
@@ -25,8 +29,10 @@ const workoutPlaces = [{
   },
   {
     place: 'Monument',
-    activeChallenges: ['run on the cascade', 'run 100m'],
-    usersWhoActivatedCh: ['Edgar', 'Erik'],
+    activeChallenges: [
+      {whoMade: 'Edgar', description: 'run on the cascade as fast as you can', name: 'Who is the fastest man?'},
+      {whoMade: 'Erik', description: 'run 100m as fast as you can!', name: 'Is Usain Bolt slow??'}
+    ],
     usersWhoCompletCh: [
       {username: 'Harut', challenge: 'run 100m', time: 10},
       {username: 'Robert', challenge: 'run 100m', time: 9},
