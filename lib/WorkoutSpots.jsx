@@ -22,7 +22,7 @@ class WorkoutSpots extends Component {
           },
       stylee: {
            display: 'flex',
-           background: 'linear-gradient(to right, #11B9AE, #E18610)',
+           background: 'linear-gradient(to right, #0080FF,#01A9DB,#DF7401 )',
            //scrollBehavior: 'smooth',
            transition: 'ease-in 2s',
            //animationName: 'anim',

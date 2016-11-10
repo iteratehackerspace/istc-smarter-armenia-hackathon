@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from 'react-dom';
-import WorkoutSpots from './dropdown';
+import WorkoutSpots from './WorkoutSpots';
 const { Component } = React;
 
 
