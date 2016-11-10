@@ -23,6 +23,9 @@ app.get('/', (req, res) => {
   fs.readFile('public/index.html', (err, file_data) => {
     res.end(file_data);
   });
+  fs.readFile('public/bundle.js', (err, file_data) => {
+    res.end(file_data);
+  });
 });
 app.get('/main_sports_statistics', (req, res) => {
   const sendMeOff = JSON.stringify({
