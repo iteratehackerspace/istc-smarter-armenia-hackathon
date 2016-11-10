@@ -3,7 +3,9 @@ import { render } from 'react-dom';
 
 const { Component } = React;
 
-const pseudorandom = [
+const spot = max => Math.floor(Math.random() * max);
+
+const elementals = [
   {
     name: "Gohar",
     id: Math.random(),
@@ -26,12 +28,29 @@ const pseudorandom = [
 
 class Application extends Component {
   render () {
+    //const Valodik = elementals[spot(elementals.length)].name;
     return (
       <div>
-  {pseudorandom[0].name}
+        <div>
+          <li>
+            Name
+          </li>
+          <li>
+            Score
+          </li>
+          <li>
+	          Field
+          </li>
+          <li>
+            Place
+          </li>
+          <li>
+	          Record
+          </li>
+        </div>
       </div>
     );
-  }
+};
 };
 render(<Application/>,
        document.getElementById('container'));
