@@ -6,20 +6,19 @@ const { Component } = React;
 class Application extends Component {
   constructor(){
     super();
-    this.state = {workoutPlaces: [{place: 'Opera', completedNumber: 0, availableNumber: 0},{place: 'Opera', completedNumber: 0, availableNumber: 0},{place: 'Opera', completedNumber: 0, availableNumber: 0}],
-      active: [true, false, false],
+    this.state = {workoutPlaces: [], active: [true, false, false],
     };
     this.clickHandler = this.clickHandler.bind(this);
   }
-  componentDidMount() {
-    this.conn.onmessage = (message) => {
-      const reply = JSON.parse(message.data);
-      switch(reply.message_type) {
-        case 'new_statistics':
-          this.setState({workoutPlaces: reply.payload});
-          break;
-      }
-    }
+  async componentDidMount() {
+    setInterval(async () => {
+      let request = 'http://localhost:8080/main_sports_statistics';
+      let recordsHistory = await fetch(request);
+      let all_records = await recordsHistory.json();
+      this.setState({workoutPlaces: all_records.payload});
+      console.log(all_records);
+    }, 1*1000);
+
   }
   clickHandler(e){
     console.log(e.currentTarget.id );
@@ -159,10 +158,10 @@ class Application extends Component {
                   {stats.place}
                 </div>
                 <div style={style.item}>
-                  {stats.completedNumber}
+                  {stats.usersWhoCompletCh.length}
                 </div>
                 <div style={style.item}>
-                  {stats.availableNumber}
+                  {stats.activeChallenges.length}
                 </div>
               </div>
               <div style={this.state.active[idx] ? style.innerItemActive : style.innerItemPassive}>
@@ -183,10 +182,10 @@ class Application extends Component {
                 {stats.place}
               </div>
               <div style={style.item}>
-                {stats.completedNumber}
+                {stats.usersWhoCompletCh.length}
               </div>
               <div style={style.item}>
-                {stats.availableNumber}
+                {stats.activeChallenges.length}
               </div>
             </div>
             <div style={this.state.active[idx] ? style.innerItemActive : style.innerItemPassive}>
@@ -207,10 +206,10 @@ class Application extends Component {
                 {stats.place}
               </div>
               <div style={style.item}>
-                {stats.completedNumber}
+                {stats.usersWhoCompletCh.length}
               </div>
               <div style={style.item}>
-                {stats.availableNumber}
+                {stats.activeChallenges.length}
               </div>
             </div>
             <div style={this.state.active[idx] ? style.innerItemActive : style.innerItemPassive}>
