@@ -1,8 +1,7 @@
 import React from 'react';
 import { render } from 'react-dom';
-import WorkoutSpots from './dropdown';
+import WorkoutSpots from '././WorkoutSpots.jsx';
 const { Component } = React;
-
 
 class Application extends Component {
   constructor(){
@@ -29,8 +28,20 @@ class Application extends Component {
     ]}
   }
   render () {
+    const styles = {
+      divStyle: {
+        background: 'black',
+      },
+      h1Style: {
+        textAlign: 'center',
+        color: 'white',
+      },
+    };
     return(
-      <WorkoutSpots/>
+      <div style = {styles.divStyle}>
+        <h1 style = {styles.h1Style}>Yerevan Works Out</h1>
+        <WorkoutSpots/>
+      </div>
     );
   };
 };

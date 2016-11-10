@@ -3,6 +3,7 @@ import React from 'react';
 const { Component } = React;
 
 export default
+
 class WorkoutSpots extends Component {
   constructor() {
     super();
@@ -38,19 +39,13 @@ class WorkoutSpots extends Component {
       <div style = {ledgerStyle.color}>
         <div style = {ledgerStyle.stylee}>
           <li style = {ledgerStyle.listItems}>
-            Name
-          </li>
-          <li style = {ledgerStyle.listItems}>
-            Score
-          </li>
-          <li style = {ledgerStyle.listItems}>
-	          Field
-          </li>
-          <li style = {ledgerStyle.listItems}>
             Place
           </li>
           <li style = {ledgerStyle.listItems}>
-	          Record
+            Completed challenges today
+          </li>
+          <li style = {ledgerStyle.listItems}>
+            Active challenges
           </li>
         </div>
       </div>
