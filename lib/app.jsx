@@ -30,16 +30,14 @@ class Application extends Component {
   render () {
     const style = {
       bigContainer: {
-        background: 'url(http://www.jtsstrength.com/wp-content/uploads/2013/04/stan-efferding-wallpaper1.jpg)',
+        background: '#ccc',
         height: '100vh',
-        backgroundSize: 'cover',
-        backgroundRepeat: 'no-repeat'
+        background: 'linear-gradient(to right, #c7bfec, #73baaf)',
+        color: '#E6DDDD',
       },
       header: {
         textAlign: 'center',
-        backgroundColor: 'linear-gradient(0%, #c7bfec,100%, #73baaf)',
-      },
-      logo: {
+        background: 'linear-gradient(to right, #c7bfec, #73baaf)',
         fontSize: '40px',
       },
       flexDescription: {
@@ -70,12 +68,8 @@ class Application extends Component {
       },
       innerItemPassive: {
         display: 'none',
-        transition: '2s',
-        opacity: '0',
-        fontWeight: '700',
-        fontSize: '20px',
       },
-      highScores: {
+      innerDivs: {
         width: '50%',
         textAlign: 'center',
       },
@@ -85,74 +79,50 @@ class Application extends Component {
       },
     }
     const bringPlaces = this.state.workoutPlaces.map((stats, idx) => {
-      const opera = {
-        flexItemColumnActive: {
-          display: 'flex',
-          cursor: 'pointer',
-          flexDirection: 'column',
-          height: '70vh',
-          transition: '2s',
-          background: 'url(http://d1vmp8zzttzftq.cloudfront.net/wp-content/uploads/2012/05/Travel-To-Armenia-Opera-Theater-Building-Yerevan-Armenia-1600x1053.jpg)',
-          backgroundPosition: 'center center',
-          backgroundSize: 'cover',
-        },
-        flexItemColumnPassive: {
-          display: 'flex',
-          cursor: 'pointer',
-          flexDirection: 'column',
-          transition: '2s',
-          background: 'url(http://d1vmp8zzttzftq.cloudfront.net/wp-content/uploads/2012/05/Travel-To-Armenia-Opera-Theater-Building-Yerevan-Armenia-1600x1053.jpg)',
-          backgroundPosition: 'center center',
-          backgroundSize: 'cover',
-          height: '50px',
-        },
+      const sample = {
+        display: 'flex',
+        flexDirection: 'column',
+        transition: '2s',
+        backgroundPosition: 'center center',
+        backgroundsize: 'cover',
       }
-      const cascade = {
-        flexItemColumnActive: {
-          display: 'flex',
-          cursor: 'pointer',
-          flexDirection: 'column',
-          height: '70vh',
-          transition: '2s',
-          background: 'url(http://abrill.net/worldtour/wp-content/uploads/2012/07/Armenia-23.jpg)',
-          backgroundPosition: 'center center',
-          backgroundSize: 'cover',
+      const styleArray = [
+        {
+          flexItemColumnActive: {
+            height: '70vh',
+            background: 'url(http://d1vmp8zzttzftq.cloudfront.net/wp-content/uploads/2012/05/Travel-To-Armenia-Opera-Theater-Building-Yerevan-Armenia-1600x1053.jpg)',
+          },
+          flexItemColumnPassive: {
+            cursor: 'pointer',
+            background: 'url(http://d1vmp8zzttzftq.cloudfront.net/wp-content/uploads/2012/05/Travel-To-Armenia-Opera-Theater-Building-Yerevan-Armenia-1600x1053.jpg)',
+            height: '50px',
+          },
         },
-        flexItemColumnPassive: {
-          display: 'flex',
-          cursor: 'pointer',
-          flexDirection: 'column',
-          transition: '2s',
-          background: 'url(http://abrill.net/worldtour/wp-content/uploads/2012/07/Armenia-23.jpg)',
-          height: '50px',
-          backgroundPosition: 'top center',
-          backgroundSize: 'cover',
+        {
+          flexItemColumnActive: {
+            height: '70vh',
+            background: 'url(http://abrill.net/worldtour/wp-content/uploads/2012/07/Armenia-23.jpg)',
+          },
+          flexItemColumnPassive: {
+            cursor: 'pointer',
+            background: 'url(http://abrill.net/worldtour/wp-content/uploads/2012/07/Armenia-23.jpg)',
+            height: '50px',
+          },
         },
-      }
-      const monument = {
-        flexItemColumnActive: {
-          display: 'flex',
-          cursor: 'pointer',
-          flexDirection: 'column',
-          height: '70vh',
-          transition: '2s',
-          backgroundPosition: 'top center',
-          background: 'url(http://www.hayweb.ru/uploads/posts/2014-06/1402979319_rl2mkiwyszs.jpg)',
-          backgroundSize: 'cover',
+        {
+          flexItemColumnActive: {
+            height: '70vh',
+            background: 'url(http://www.hayweb.ru/uploads/posts/2014-06/1402979319_rl2mkiwyszs.jpg)',
+          },
+          flexItemColumnPassive: {
+            cursor: 'pointer',
+            background: 'url(http://www.hayweb.ru/uploads/posts/2014-06/1402979319_rl2mkiwyszs.jpg)',
+            height: '50px',
+          },
         },
-        flexItemColumnPassive: {
-          display: 'flex',
-          cursor: 'pointer',
-          flexDirection: 'column',
-          transition: '2s',
-          background: 'url(http://www.hayweb.ru/uploads/posts/2014-06/1402979319_rl2mkiwyszs.jpg)',
-          backgroundSize: 'cover',
-          height: '50px',
-        },
-      }
-      if(idx === 0){
+      ];
         return(
-            <div style={this.state.active[idx] ? opera.flexItemColumnActive : opera.flexItemColumnPassive} onClick={this.clickHandler} id={idx}>
+            <div style={this.state.active[idx] ? {...sample, ...styleArray[idx].flexItemColumnActive} : {...sample, ...styleArray[idx].flexItemColumnPassive}} onClick={this.clickHandler} id={idx}>
               <div style={style.flexItem}>
                 <div style={style.item}>
                   {stats.place}
@@ -165,69 +135,20 @@ class Application extends Component {
                 </div>
               </div>
               <div style={this.state.active[idx] ? style.innerItemActive : style.innerItemPassive}>
-                <div style={style.highScores}>
+                <div style={style.innerDivs}>
                   High Scores
                 </div>
-                <div style={style.openChallenges}>
+                <div style={style.innerDivs}>
                   Open Challenges
                 </div>
               </div>
             </div>
         )
-      }else if(idx === 1){
-        return(
-          <div style={this.state.active[idx] ? cascade.flexItemColumnActive : cascade.flexItemColumnPassive} onClick={this.clickHandler} id={idx}>
-            <div style={style.flexItem}>
-              <div style={style.item}>
-                {stats.place}
-              </div>
-              <div style={style.item}>
-                {stats.usersWhoCompletCh.length}
-              </div>
-              <div style={style.item}>
-                {stats.activeChallenges.length}
-              </div>
-            </div>
-            <div style={this.state.active[idx] ? style.innerItemActive : style.innerItemPassive}>
-              <div style={style.highScores}>
-                High Scores
-              </div>
-              <div style={style.openChallenges}>
-                Open Challenges
-              </div>
-            </div>
-          </div>
-        )
-      }else if(idx === 2){
-        return(
-          <div style={this.state.active[idx] ? monument.flexItemColumnActive : monument.flexItemColumnPassive} onClick={this.clickHandler} id={idx}>
-            <div style={style.flexItem}>
-              <div style={style.item}>
-                {stats.place}
-              </div>
-              <div style={style.item}>
-                {stats.usersWhoCompletCh.length}
-              </div>
-              <div style={style.item}>
-                {stats.activeChallenges.length}
-              </div>
-            </div>
-            <div style={this.state.active[idx] ? style.innerItemActive : style.innerItemPassive}>
-              <div style={style.highScores}>
-                High Scores
-              </div>
-              <div style={style.openChallenges}>
-                Open Challenges
-              </div>
-            </div>
-          </div>
-        )
-      }
-    })
+      })
     return (
       <div style={style.bigContainer}>
         <header style={style.header}>
-          <p style={style.logo}>Yerevan WorkOut</p>
+          Yerevan WorkOut
         </header>
         <div style={style.flexDescription}>
           <div style={style.DescDiv}>
