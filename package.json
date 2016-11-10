@@ -6,9 +6,11 @@
   "version": "0.0.1",
   "description": "hackathon-app",
   "dependencies": {
+    "body-parser": "^1.15.2",
     "express": "^4.14.0",
     "react": "^15.3.2",
-    "react-dom": "^15.3.2"
+    "react-dom": "^15.3.2",
+    "ws": "^1.1.1"
   },
   "babel": {
     "presets": [
