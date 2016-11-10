@@ -1,6 +1,8 @@
 import React from 'react';
 import { render } from 'react-dom';
-import WorkoutSpots from '././WorkoutSpots.jsx';
+
+import WorkoutSpots from './WorkoutSpots';
+
 const { Component } = React;
 
 class Application extends Component {
