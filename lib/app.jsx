@@ -34,7 +34,7 @@ class Application extends Component {
         width: 'calc(100%/3)',
         fontSize: '25px',
         margin: '10px',
-        color: '#ddd',
+        color: '#595858',
       },
       titleStyle: {
         color: '#504B4B',
