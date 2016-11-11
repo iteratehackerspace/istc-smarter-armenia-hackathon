@@ -108,41 +108,6 @@ class Application extends Component {
         justifyContent: 'center',
         width: 'calc(100%/3)',
       };
-      const styleArray = [
-        {
-          flexItemColumnActive: {
-            height: '70vh',
-            background: 'url(http://d1vmp8zzttzftq.cloudfront.net/wp-content/uploads/2012/05/Travel-To-Armenia-Opera-Theater-Building-Yerevan-Armenia-1600x1053.jpg)',
-          },
-          flexItemColumnPassive: {
-            cursor: 'pointer',
-            background: 'url(http://d1vmp8zzttzftq.cloudfront.net/wp-content/uploads/2012/05/Travel-To-Armenia-Opera-Theater-Building-Yerevan-Armenia-1600x1053.jpg)',
-            height: '50px',
-          },
-        },
-        {
-          flexItemColumnActive: {
-            height: '70vh',
-            background: 'url(http://abrill.net/worldtour/wp-content/uploads/2012/07/Armenia-23.jpg)',
-          },
-          flexItemColumnPassive: {
-            cursor: 'pointer',
-            background: 'url(http://abrill.net/worldtour/wp-content/uploads/2012/07/Armenia-23.jpg)',
-            height: '50px',
-          },
-        },
-        {
-          flexItemColumnActive: {
-            height: '70vh',
-            background: 'url(http://www.hayweb.ru/uploads/posts/2014-06/1402979319_rl2mkiwyszs.jpg)',
-          },
-          flexItemColumnPassive: {
-            cursor: 'pointer',
-            background: 'url(http://www.hayweb.ru/uploads/posts/2014-06/1402979319_rl2mkiwyszs.jpg)',
-            height: '50px',
-          },
-        },
-      ];
       const getUsers = this.state.workoutPlaces[idx].usersWhoCompletCh.map((user, idx) => {
         return(
           <div style={rowFlex}>
@@ -174,7 +139,7 @@ class Application extends Component {
         )
       })
         return(
-            <div style={this.state.active[idx] ? {...basicFlex, ...sample, ...styleArray[idx].flexItemColumnActive} : {...basicFlex, ...sample, ...styleArray[idx].flexItemColumnPassive}} onClick={this.clickHandler} id={idx}>
+            <div style={this.state.active[idx] ? {...basicFlex, ...sample, ...this.state.workoutPlaces[idx].image.flexItemColumnActive} : {...basicFlex, ...sample, ...this.state.workoutPlaces[idx].image.flexItemColumnPassive}} onClick={this.clickHandler} id={idx}>
               <div style={style.flexItem}>
                 <div style={style.item}>
                   {stats.place}
