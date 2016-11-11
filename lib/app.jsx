@@ -28,6 +28,18 @@ class Application extends Component {
   }
   render () {
     const style = {
+      usernameStyle: {
+        textAlign: 'center',
+        justifyContent: 'center',
+        width: 'calc(100%/3)',
+        fontSize: '25px',
+        margin: '10px',
+        color: '#ddd',
+      },
+      titleStyle: {
+        color: '#504B4B',
+        fontSize: '30px',
+      },
       bigContainer: {
         background: '#ccc',
         height: '100vh',
@@ -78,6 +90,15 @@ class Application extends Component {
         width: '50%',
         textAlign: 'center',
       },
+      none: {
+        display: 'none',
+      },
+      placeName: {
+        color: 'white',
+        fontSize: '30px',
+        textAlign: 'center',
+        margin: '5px',
+      },
     }
     const bringPlaces = this.state.workoutPlaces.map((stats, idx) => {
       const rowFlex = {
@@ -92,9 +113,9 @@ class Application extends Component {
         backgroundColor: '#87b1d4',
         opacity: '0.8',
         height: '100%',
-        marginLeft: '20px',
-        marginRight: '20px',
-        marginBottom: "20px",
+        marginLeft: '10px',
+        marginRight: '10px',
+        marginBottom: '10px',
         borderRadius: '20px',
       };
       const sample = {
@@ -141,30 +162,30 @@ class Application extends Component {
         return(
             <div style={this.state.active[idx] ? {...basicFlex, ...sample, ...this.state.workoutPlaces[idx].image.flexItemColumnActive} : {...basicFlex, ...sample, ...this.state.workoutPlaces[idx].image.flexItemColumnPassive}} onClick={this.clickHandler} id={idx}>
               <div style={style.flexItem}>
-                <div style={style.item}>
+                <div style={style.placeName}>
                   {stats.place}
                 </div>
-                <div style={style.item}>
+                <div style={style.none}>
                   {stats.usersWhoCompletCh.length}
                 </div>
-                <div style={style.item}>
+                <div style={style.none}>
                   {stats.activeChallenges.length}
                 </div>
               </div>
               <div style={this.state.active[idx] ? style.innerItemActive : style.innerItemPassive}>
                 <div style={style.innerDivs}>
                   <div style={basicFlex}>
-                    <div>
+                    <div style={style.titleStyle}>
                       High Scores
                     </div>
                     <div style={rowFlex}>
-                      <div style={center}>
+                      <div style={style.usernameStyle}>
                         Username
                       </div>
-                      <div style={center}>
+                      <div style={style.usernameStyle}>
                         Challenge
                       </div>
-                      <div style={center}>
+                      <div style={style.usernameStyle}>
                         Time
                       </div>
                     </div>
@@ -173,18 +194,18 @@ class Application extends Component {
                 </div>
                 <div style={style.innerDivs}>
                   <div style={basicFlex}>
-                    <div>
+                    <div style={style.titleStyle}>
                       Open Challenges
                     </div>
                     <div style={rowFlex}>
-                      <div style={center}>
+                      <div style={style.usernameStyle}>
                         Username
                       </div>
-                      <div style={center}>
+                      <div style={style.usernameStyle}>
                         Challenge
                       </div>
-                      <div style={center}>
-                        description
+                      <div style={style.usernameStyle}>
+                        Description
                       </div>
                     </div>
                     {getChallenges}
@@ -200,13 +221,13 @@ class Application extends Component {
           Yerevan WorkOut
         </header>
         <div style={style.flexDescription}>
-          <div style={style.DescDiv}>
+          <div style={style.none}>
             Place
           </div>
-          <div style={style.DescDiv}>
+          <div style={style.none}>
             Number of completed challenges
           </div>
-          <div style={style.DescDiv}>
+          <div style={style.none}>
             Number of available challenges
           </div>
         </div>
