@@ -7,6 +7,17 @@ const json_parser = body_parser.json();
 const port = 8080;
 const workoutPlaces = [{
   place: 'Opera',
+  image: {
+    flexItemColumnActive: {
+      height: '70vh',
+      background: 'url(http://d1vmp8zzttzftq.cloudfront.net/wp-content/uploads/2012/05/Travel-To-Armenia-Opera-Theater-Building-Yerevan-Armenia-1600x1053.jpg)',
+    },
+    flexItemColumnPassive: {
+      cursor: 'pointer',
+      background: 'url(http://d1vmp8zzttzftq.cloudfront.net/wp-content/uploads/2012/05/Travel-To-Armenia-Opera-Theater-Building-Yerevan-Armenia-1600x1053.jpg)',
+      height: '50px',
+    },
+  },
   activeChallenges: [
     {whoMade: 'Edgar', description: 'run on the cascade as fast as you can', name: 'Who is the fastest man?'},
     {whoMade: 'Erik', description: 'run 100m as fast as you can!', name: 'Is Usain Bolt slow??'}
@@ -18,6 +29,17 @@ const workoutPlaces = [{
   },
   {
   place: 'Cascade',
+  image: {
+    flexItemColumnActive: {
+      height: '70vh',
+      background: 'url(http://abrill.net/worldtour/wp-content/uploads/2012/07/Armenia-23.jpg)',
+    },
+    flexItemColumnPassive: {
+      cursor: 'pointer',
+      background: 'url(http://abrill.net/worldtour/wp-content/uploads/2012/07/Armenia-23.jpg)',
+      height: '50px',
+    },
+  },
   activeChallenges: [
     {whoMade: 'Edgar', description: 'run on the cascade as fast as you can', name: 'Who is the fastest man?'},
     {whoMade: 'Erik', description: 'run 100m as fast as you can!', name: 'Is Usain Bolt slow??'}
@@ -29,6 +51,17 @@ const workoutPlaces = [{
   },
   {
     place: 'Monument',
+    image: {
+      flexItemColumnActive: {
+        height: '70vh',
+        background: 'url(http://www.hayweb.ru/uploads/posts/2014-06/1402979319_rl2mkiwyszs.jpg)',
+      },
+      flexItemColumnPassive: {
+        cursor: 'pointer',
+        background: 'url(http://www.hayweb.ru/uploads/posts/2014-06/1402979319_rl2mkiwyszs.jpg)',
+        height: '50px',
+      },
+    },
     activeChallenges: [
       {whoMade: 'Edgar', description: 'run on the cascade as fast as you can', name: 'Who is the fastest man?'},
       {whoMade: 'Erik', description: 'run 100m as fast as you can!', name: 'Is Usain Bolt slow??'}
