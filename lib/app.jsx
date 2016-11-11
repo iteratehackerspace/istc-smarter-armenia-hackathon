@@ -92,6 +92,10 @@ class Application extends Component {
         backgroundColor: '#87b1d4',
         opacity: '0.8',
         height: '100%',
+        marginLeft: '20px',
+        marginRight: '20px',
+        marginBottom: "20px",
+        borderRadius: '20px',
       };
       const sample = {
         transition: '2s',
