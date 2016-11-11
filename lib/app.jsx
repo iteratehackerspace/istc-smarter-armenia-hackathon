@@ -64,6 +64,8 @@ class Application extends Component {
         opacity: '1',
         fontWeight: '700',
         fontSize: '20px',
+        overflow: 'hidden',
+        height: '100%',
       },
       innerItemPassive: {
         display: 'none',
@@ -87,6 +89,9 @@ class Application extends Component {
       const basicFlex = {
         display: 'flex',
         flexDirection: 'column',
+        backgroundColor: '#87b1d4',
+        opacity: '0.8',
+        height: '100%',
       };
       const sample = {
         transition: '2s',
